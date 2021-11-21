@@ -9,7 +9,7 @@ import CommandData from '../interfaces/CommandData'
 import EventData from '../interfaces/events/EventData'
 import SlashCommandData from '../interfaces/SlashCommandData'
 
-import Utils from '../managers/UtilsManager'
+import Utils from '../managers/Utils'
 
 class Kotyabot extends Client {
     public commands: Collection<string, CommandData> = new Collection()
