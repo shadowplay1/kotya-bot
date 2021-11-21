@@ -13,24 +13,25 @@ class Eval extends Command {
 
                 function clean(text: string) {
                     if (typeof text == 'string')
-                        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-                    else return text;
+                        return text.replace(/`/g, '`' + String.fromCharCode(8203))
+                            .replace(/@/g, '@' + String.fromCharCode(8203))
+                    else return text
                 }
 
                 try {
-                    const code = args.join(' ');
+                    const code = args.join(' ')
                     let evaled = eval(code.includes('await') ? `(async() { ${code} })()` : code)
 
-                    message.react('✅');
+                    message.react('✅')
 
                     if (typeof evaled !== 'string') evaled = inspect(evaled)
-                    if (evaled == 'Promise { <pending> }') return;
+                    if (evaled == 'Promise { <pending> }') return
 
                     message.channel.send(`\`\`\`js\n${clean(evaled)}\`\`\``)
 
                 } catch (err) {
-                    message.react('❌');
-                    message.channel.send(`\`Error:\` \`\`\`js\n${clean(err)}\n\`\`\``);
+                    message.react('❌')
+                    message.channel.send(`\`Error:\` \`\`\`js\n${clean(err)}\n\`\`\``)
                 }
             }
         })

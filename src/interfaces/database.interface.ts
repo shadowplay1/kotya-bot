@@ -1,6 +1,6 @@
 // quick.db modified defenitions
 
-interface Database {
+export interface Database {
     /**
      * This function fetches data from a key in the database.
      * @param key Any string as a key. Also allows for dot notation following the key.
@@ -40,7 +40,8 @@ interface Database {
     subtract<K>(key: string, value: number): K | null;
 
     /**
-     * This function will push into an array in the database based on the key. (If no existing array, it will create one)
+     * This function will push into an array in the database based on the key. 
+     * (If no existing array, it will create one)
      * @param key Any string as a key. Also allows for dot notation following the key.
      * @param value Any data to push.
      * @param ops Any options to be added to the request.
@@ -49,7 +50,8 @@ interface Database {
 
     /**
      * This function returns a boolean indicating whether an element with the specified key exists or not.
-     * @param key Any string as a key. Also allows for dot notation following the key, this will return if the prop exists or not.
+     * @param key Any string as a key. Also allows for dot notation following the key, 
+     * this will return if the prop exists or not.
      * @param ops Any options to be added to the request.
      */
     has(key: string): boolean;
@@ -60,5 +62,3 @@ interface Database {
      */
     all(): { ID: string; data: any; }[];
 }
-
-export = Database

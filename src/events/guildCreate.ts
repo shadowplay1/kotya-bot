@@ -5,7 +5,7 @@ import Event from '../handlers/Event'
 
 import Kotyabot from '../classes/Kotyabot'
 
-import SlashCommandData from '../interfaces/SlashCommandData'
+import { SlashCommandData } from '../interfaces/SlashCommandData'
 
 export class GuildCreate extends Event {
     constructor() {
@@ -15,9 +15,10 @@ export class GuildCreate extends Event {
                     .filter(x => x.endsWith('.ts'))
                     .map(x => x.slice(0, -3))
 
-                for (let file of cmds) {
+                for (const file of cmds) {
                     const commandName = file[0]?.toUpperCase() + file?.slice(1)
 
+                    // eslint-disable-next-line
                     const SlashCommand = require(`../commands/slash/${file}`)[commandName]
                     const cmd: SlashCommandData = new SlashCommand().cmd
 

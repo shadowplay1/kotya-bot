@@ -1,8 +1,6 @@
-import Kotyabot from '../../classes/Kotyabot';
+import Kotyabot from '../../classes/Kotyabot'
 
-interface EventData {
+export interface EventData {
     name: string
     fn(bot: Kotyabot, ...args: any[]): void
 }
-
-export = EventData

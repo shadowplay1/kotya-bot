@@ -1,13 +1,13 @@
 import { Message } from 'discord.js'
 
 import Event from '../handlers/Event'
-import CommandData from '../interfaces/CommandData'
+import { CommandData } from '../interfaces/CommandData'
 
 export class MessageCreate extends Event {
     constructor() {
         super({
             async run(bot, message: Message) {
-                const prefix: string = '!'
+                const prefix = '!'
                 const content = message.content
 
                 const args = content.trim().split(/ +/g).slice(1)
@@ -21,7 +21,8 @@ export class MessageCreate extends Event {
                 if (!message.content.startsWith(prefix)) {
                     bot.db.add(`usage.standard.${cmd.name}`, 1)
 
-                    cmd.run(bot, message, args).catch((err: Error) => message.reply((err.name || 'Error') + ': ' + err.message))
+                    cmd.run(bot, message, args)
+                        .catch((err: Error) => message.reply((err.name || 'Error') + ': ' + err.message))
                 }
             }
         })

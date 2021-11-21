@@ -11,9 +11,9 @@ export class InteractionCreate extends Event {
 
                 const commandName = interaction.commandName
                 const cmd = bot.slashCommands.get(commandName)
-            
+
                 if(!cmd) return
-                
+
                 const args = interaction.options.data
 
                 bot.db.add(`usage.slash.${commandName}`, 1)

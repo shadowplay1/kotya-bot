@@ -21,10 +21,15 @@ class Utils {
      */
     public async fetchMessage(interaction: CommandInteraction): Promise<Message> {
         // @ts-ignore
-        const message = await this.bot.api.webhooks(this.bot.user.id, interaction.token).messages('@original').patch({ data: {} });
+        const api: any = this.bot.api
+
+        const message = await api
+            .webhooks(this.bot.user.id, interaction.token)
+            .messages('@original')
+            .patch({ data: {} })
 
         // @ts-ignore
-        const msg = new Message(this.bot, message);
+        const msg = new Message(this.bot, message)
 
         return msg
     }
@@ -36,11 +41,13 @@ class Utils {
      * @param wordsArray Words array.
      * @returns The parsed string.
      */
-    public plural(number: number, wordsArray: [string, string, string]) {
-        number = + number
-        const word = wordsArray[number % 10 == 1 && number % 100 != 11 ? 0 : number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20) ? 1 : 2]
+    public plural(n: number, words: [string, string, string]) {
+        n * 2
 
-        return `${number} ${word}`
+        // eslint-disable-next-line
+        const word = words[n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2]
+
+        return `${n} ${word}`
     }
 
 

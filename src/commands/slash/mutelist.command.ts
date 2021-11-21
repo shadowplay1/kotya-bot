@@ -1,14 +1,14 @@
 import { MessageEmbed } from 'discord.js'
 
 import SlashCommand from '../../handlers/SlashCommand'
-import MuteData from '../../interfaces/MuteData'
+import { IMute } from '../../interfaces/mute.interface'
 
 
 export class Mutelist extends SlashCommand {
     constructor() {
         super({
             name: 'mutelist',
-            category: 'Модерация',
+            category: 'Moderation',
             ownerOnly: false,
 
             options: [],
@@ -16,7 +16,7 @@ export class Mutelist extends SlashCommand {
             description: 'Показывает список всех мутов на сервере',
 
             async run(bot, interaction) {
-                const mutes = bot.db.fetch<MuteData[]>('mutes')
+                const mutes = bot.db.fetch<IMute[]>('mutes')
                     .filter(x => x.guildID == interaction.guild.id)
 
                 if (!mutes.length) return interaction.reply({
@@ -31,7 +31,8 @@ export class Mutelist extends SlashCommand {
                             .setDescription(mutes.map((x, i) => {
                                 const member = interaction.guild.members.cache.get(x.userID)
 
-                                return `${i + 1} - **${member.user.tag}**: ${x.timeString}, причина - **${x.reason || 'не указана'}**`
+                                return `${i + 1} - **${member.user.tag}**: ${x.timeString},` +
+                                    `причина - **${x.reason || 'не указана'}**`
                             }).join('\n'))
                     ]
                 })

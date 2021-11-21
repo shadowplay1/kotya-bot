@@ -1,4 +1,4 @@
-import SlashCommandData from '../interfaces/SlashCommandData'
+import { SlashCommandData } from '../interfaces/SlashCommandData'
 
 class SlashCommand {
     public cmd: SlashCommandData

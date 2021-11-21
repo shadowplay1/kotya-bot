@@ -5,7 +5,7 @@ import {
 
 import Kotyabot from '../classes/Kotyabot'
 
-interface SlashCommandData {
+export interface SlashCommandData {
     name: string,
     category: string,
     ownerOnly: boolean,
@@ -15,5 +15,3 @@ interface SlashCommandData {
 
     run(bot: Kotyabot, interaction: CommandInteraction, args: string[]): Promise<void>
 }
-
-export = SlashCommandData
