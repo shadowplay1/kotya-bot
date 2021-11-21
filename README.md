@@ -1,8 +1,8 @@
 # kotya bot
 
-kotya bot source code.
+код бота для севрера коти
 
-special for DeityLamb. dont kill me pls.
+специально для сенпая
 
 
-enjoy :)
+наслаждайся и за кринж не убивай :)
