@@ -40,12 +40,7 @@ export class Mute extends SlashCommand {
                     interaction.guild.roles.cache.get('702135969369030666') ||
                     interaction.guild.roles.cache.get('911262637558480916')
 
-                const splittedTimeString = time
-                    .replace('d', ' d')
-                    .replace('h', ' h')
-                    .replace('m', ' m')
-                    .replace('s', ' s')
-
+                const splittedTimeString = time.replace(/[dhms]/g, i => ' ' + i)
 
                 const msMuteTime = ms(time)
 
@@ -83,16 +78,16 @@ export class Mute extends SlashCommand {
 
 
                 if (!author.permissions.has('MANAGE_MESSAGES'))
-                    return interaction.reply({ content: `У тебя нет прав. О чём ты думаешь, используя эту команду?`, ephemeral: true }).catch(() => { })
+                    return interaction.reply({ content: `У тебя нет прав. О чём ты думаешь, используя эту команду?`, ephemeral: true })
 
                 if (!interaction.guild.me.permissions.has('MANAGE_ROLES'))
-                    return interaction.reply({ content: `Чтобы мутить, мне необходимо право на __выдачу ролей__.` }).catch(() => { })
+                    return interaction.reply({ content: `Чтобы мутить, мне необходимо право на __выдачу ролей__.` })
 
                 if (!muteRole)
-                    return interaction.reply({ content: 'Я не могу найти мут роль.' }).catch(() => { })
+                    return interaction.reply({ content: 'Я не могу найти мут роль.' })
 
                 if (!msMuteTime)
-                    return interaction.reply({ content: 'Укажи __правильное__ время.', ephemeral: true }).catch(() => { })
+                    return interaction.reply({ content: 'Укажи __правильное__ время.', ephemeral: true })
 
                 muteUser.roles.add(muteRole, `Выдача мута модератором ${author.user.tag}${reason ? ` по причине "${reason}".` : '.'}`)
 
