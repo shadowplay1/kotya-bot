@@ -1,13 +1,12 @@
 import ms from 'ms'
 
-import { SlashCommand } from '../abstract-slash.command'
-import { IMute } from '../interfaces/mute.interface'
+import { SlashCommand } from '../../abstract-slash.command'
+import { IMute } from './mute.interface'
 
-import { parseMs } from '../../utils/parse-ms.util'
-import { pluralTime } from '../../utils/plural-time.util'
+import { parseMs } from '../../../core/utils/parse-ms.util'
+import { pluralTime } from '../../../core/utils/plural-time.util'
 
-import Kotyabot from '../../classes/Kotyabot'
-import { CommandOptions } from '../../interfaces/command.interface'
+import { ApplicationCommandOption } from 'discord.js'
 
 export class Mute extends SlashCommand {
 
@@ -15,7 +14,7 @@ export class Mute extends SlashCommand {
     category = 'Moderation'
     ownerOnly = false
 
-    options: CommandOptions[] = [
+    options: ApplicationCommandOption[] = [
         {
             name: 'пользователь',
             required: true,
@@ -38,7 +37,7 @@ export class Mute extends SlashCommand {
 
     description = 'Мутит указанного пользователя'
 
-    async run(bot: Kotyabot, interaction, args) {
+    async run(bot, interaction, args) {
         const [user, time, reason] = args
 
         const muteRole =
@@ -79,7 +78,7 @@ export class Mute extends SlashCommand {
             `Выдача мута модератором ${author.user.tag}${reason ? ` по причине "${reason}".` : '.'}`
         )
 
-        bot.db.push<IMute>('mutes', {
+        bot.db.push/*<IMute>*/('mutes', {
             guildID: interaction.guild.id,
             userID: muteUser.id,
             channelID: interaction.channel.id,
