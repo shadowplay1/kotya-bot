@@ -1,6 +1,6 @@
 import ms from 'ms'
 
-import { SlashCommand } from '../SlashCommand'
+import { SlashCommand } from '../abstract-slash.command'
 import { IMute } from '../../interfaces/mute.interface'
 
 import { parseMs } from '../../utils/parse-ms.util'
