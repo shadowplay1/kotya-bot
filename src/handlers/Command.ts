@@ -1,4 +1,4 @@
-import CommandData from '../interfaces/CommandData'
+import { CommandData } from '../interfaces/CommandData'
 
 class Command {
     public cmd: CommandData
