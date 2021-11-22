@@ -1,27 +1,28 @@
 import { plural } from './plural.util'
+import { Time } from './time.interface'
 
-export function pluralTime(number: string | number, timeObject): string[] {
-    const timeStrings: string[] = []
+export function pluralTime(number: number, timeObject: Time): string {
 
-    if (timeObject.days)
-        timeStrings.push(
-            plural(Number(number), ['день', 'дня', 'дней'])
-        )
+    const result: string[] = []
 
-    if (timeObject.hours)
-        timeStrings.push(
-            plural(Number(number), ['час', 'часа', 'часов'])
-        )
+    if (timeObject.days) {
+        const time = plural(number, ['день', 'дня', 'дней'])
+        result.push(time)
+    }
 
-    if (timeObject.minutes)
-        timeStrings.push(
-            plural(Number(number), ['минута', 'минуты', 'минут'])
-        )
+    if (timeObject.hours) {
+        const time = plural(number, ['час', 'часа', 'часов'])
+        result.push(time)
+    }
+    if (timeObject.minutes)  {
+        const time = plural(number, ['минута', 'минуты', 'минут'])
+        result.push(time)
+    }
 
-    if (timeObject.seconds)
-        timeStrings.push(
-            plural(Number(number), ['секунд', 'секунды', 'секунд'])
-        )
+    if (timeObject.seconds) {
+        const time = plural(number, ['секунда', 'секунды', 'секунд'])
+        result.push(time)
+    }
 
-    return timeStrings
+    return result.join(',')
 }
