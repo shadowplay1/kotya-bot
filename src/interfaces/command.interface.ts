@@ -5,8 +5,17 @@ export interface CommandOptions {
     description: string
 }
 
-type ArgumentTypes =
-    'BOOLEAN' | 'CHANNEL' | 'INTEGER' |
-    'MENTIONABLE' | 'NUMBER' | 'ROLE' |
-    'STRING' | 'SUB_COMMAND' | 'SUB_COMMAND_GROUP' |
-    'USER'
+type ArgumentTypes = keyof typeof ArgumentEnum
+
+const enum ArgumentEnum {
+    SUB_COMMAND,
+    SUB_COMMAND_GROUP,
+    STRING,
+    INTEGER,
+    BOOLEAN,
+    USER,
+    CHANNEL,
+    ROLE,
+    MENTIONABLE,
+    NUMBER,
+}
